@@ -48,7 +48,7 @@ namespace LightLux.Modes
             if (R.IsReady() && Config.Modes.Combo.UseR)
             {
                 var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
-                if (R.IsInRange(target) && target.IsValidTarget() && target.Health <= Damage.RDamage(target))
+                if (R.IsInRange(target) && target.IsValidTarget() && target.Health >= Damage.RDamage(target))
                 {
                     var rPrediction = R.GetPrediction(target);
                     if (rPrediction.HitChance <= HitChance.High)
