@@ -39,7 +39,15 @@ namespace LightLux.Modes
 
             if (W.IsReady() && Config.Modes.Combo.UseW)
             {
-                W.Cast();
+                foreach (var allies in EntityManager.Heroes.Allies)
+                {
+                    if (allies != null)
+                    {
+                        if (allies.IsCharmed || allies.IsAttackingPlayer || allies.IsFeared || allies.IsStunned ||
+                            allies.IsTaunted || allies.IsValid)
+                            W.Cast(allies);
+                    }
+                }
             }
 
             if (R.IsReady() && Config.Modes.Combo.UseR)
