@@ -16,10 +16,10 @@ namespace LightLux
 
         static SpellManager()
         {
-            Q = new Spell.Skillshot(SpellSlot.Q, 1300, SkillShotType.Linear, 500, 1200, 80);
+            Q = new Spell.Skillshot(SpellSlot.Q, 1300, SkillShotType.Linear, 50, 1200, 80);
             W = new Spell.Active(SpellSlot.W, 1200);
             E2 = new Spell.Active(SpellSlot.E, 350);
-            E = new Spell.Skillshot(SpellSlot.E, 1100, SkillShotType.Linear, 500, 1300, 275);
+            E = new Spell.Skillshot(SpellSlot.E, 1100, SkillShotType.Linear, 50, 1300, 275);
             R = new Spell.Skillshot(SpellSlot.R, 3340, SkillShotType.Linear, 175, 3000, 190);
         }
 

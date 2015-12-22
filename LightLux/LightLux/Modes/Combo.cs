@@ -20,7 +20,7 @@ namespace LightLux.Modes
                 if (Q.IsInRange(target) && target.IsValidTarget())
                 {
                     var qPrediction = Q.GetPrediction(target);
-                    if (qPrediction.HitChance >= HitChance.High)
+                    if (qPrediction.HitChance < HitChance.High)
                     {
                         Q.Cast(qPrediction.CastPosition);
                     }
@@ -33,7 +33,7 @@ namespace LightLux.Modes
                 if (E.IsInRange(target) && target.IsValidTarget())
                 {
                     var ePrediction = E.GetPrediction(target);
-                    if (ePrediction.HitChance >= HitChance.High)
+                    if (ePrediction.HitChance < HitChance.High)
                     {
                         E.Cast(ePrediction.CastPosition);
                     }
@@ -48,10 +48,10 @@ namespace LightLux.Modes
             if (R.IsReady() && Config.Modes.Combo.UseR)
             {
                 var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
-                if (R.IsInRange(target) && target.IsValidTarget() && target.Health >= Damage.RDamage(target))
+                if (R.IsInRange(target) && target.IsValidTarget() && target.Health < Damage.RDamage(target))
                 {
                     var rPrediction = R.GetPrediction(target);
-                    if (rPrediction.HitChance >= HitChance.High)
+                    if (rPrediction.HitChance < HitChance.High)
                     {
                         R.Cast(rPrediction.CastPosition);
                     }
