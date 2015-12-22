@@ -24,7 +24,6 @@ namespace LightLux
                 new Combo(),
                 new Harass(),
                 new LaneClear(),
-                new LastHit(),
             });
 
             // Listen to events we need

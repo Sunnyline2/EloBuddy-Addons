@@ -16,7 +16,7 @@ namespace LightLux.Modes
             // TODO: Add harass logic here
             if (Config.Modes.Harass.UseE && Q.IsReady())
             {
-                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
+                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.ServerPosition);
                 if (target.IsValidTarget())
                 {
                     var qPrediction = Q.GetPrediction(target);
@@ -28,7 +28,7 @@ namespace LightLux.Modes
             }
             if (Config.Modes.Harass.UseE && E.IsReady())
             {
-                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical);
+                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.ServerPosition);
                 if (target.IsValidTarget())
                 {
                     var ePrediction = E.GetPrediction(target);

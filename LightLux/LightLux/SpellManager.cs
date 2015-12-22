@@ -27,7 +27,7 @@ namespace LightLux
         {
             E.AllowedCollisionCount = Int32.MaxValue;
             R.AllowedCollisionCount = Int32.MaxValue;
-            Chat.Print("<< LightBlow >>");
+            Chat.Print("<< LightLux >>");
         }
     }
 }

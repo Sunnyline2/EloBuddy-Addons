@@ -1,5 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Enumerations;
 
 namespace LightLux.Modes
 {
@@ -21,6 +22,13 @@ namespace LightLux.Modes
             if (!(E.IsOnCooldown && E.IsReady()))
             {
                 E2.Cast();
+            }
+            //KS
+            var rTarget = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
+            if (rTarget.IsValidTarget() && R.MinimumHitChance == HitChance.Immobile &&
+                R.MinimumHitChance == HitChance.Impossible)
+            {
+                R.Cast(rTarget);
             }
         }
     }

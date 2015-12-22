@@ -37,8 +37,6 @@ namespace LightLux
             Config.Initialize();
             SpellManager.Initialize();
             ModeManager.Initialize();
-
-            // Listen to events we need
             Drawing.OnDraw += OnDraw;
         }
 
