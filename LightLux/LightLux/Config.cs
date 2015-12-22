@@ -18,8 +18,8 @@ namespace LightLux
         static Config()
         {
             Menu = MainMenu.AddMenu(MenuName, MenuName.ToLower());
-            Menu.AddGroupLabel("Welcome to this Lux!");
-            Menu.AddLabel("To change the menu, please have a look at the");
+            Menu.AddGroupLabel("LightLux!");
+            Menu.AddLabel("Hello this is my frist script for EloBuddy! HF");
             Modes.Initialize();
         }
 

@@ -12,7 +12,7 @@ namespace LightLux.Modes
 
         public override void Execute()
         {
-            // TODO: AUTOMATYCZNE UŻYWANIE E JEŚLI WRÓG JEST W NIM!
+            // Forced aa
             var aaTarget = TargetSelector.GetTarget(Program._Player.AttackRange, DamageType.Mixed);
             if (Damage.LuxPassive(aaTarget) && aaTarget.IsValidTarget())
             {

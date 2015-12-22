@@ -28,6 +28,7 @@ namespace LightLux.Modes
                 if (target.IsValidTarget() && E.MinimumHitChance <= HitChance.High)
                 {
                     E.Cast(target);
+                    E2.Cast();
                 }
             }
         }
