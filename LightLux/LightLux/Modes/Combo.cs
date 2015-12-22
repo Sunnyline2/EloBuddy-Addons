@@ -16,24 +16,21 @@ namespace LightLux.Modes
         {
             if (Q.IsReady() && Config.Modes.Combo.UseQ)
             {
-                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.ServerPosition);
-                if (Q.IsInRange(target) && target.IsValidTarget())
+                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);
+                var qPrediction = Q.GetPrediction(target);
+                if (qPrediction.HitChancePercent <= Program.hitchance)
                 {
-                    var qPrediction = Q.GetPrediction(target);
-                    if (qPrediction.HitChance < HitChance.High)
-                    {
-                        Q.Cast(qPrediction.CastPosition);
-                    }
+                    Q.Cast(qPrediction.CastPosition);
                 }
             }
 
             if (E.IsReady() && Config.Modes.Combo.UseE)
             {
-                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.ServerPosition);
+                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.Position);
                 if (E.IsInRange(target) && target.IsValidTarget())
                 {
                     var ePrediction = E.GetPrediction(target);
-                    if (ePrediction.HitChance < HitChance.High)
+                    if (ePrediction.HitChancePercent <= Program.hitchance)
                     {
                         E.Cast(ePrediction.CastPosition);
                     }
@@ -51,7 +48,7 @@ namespace LightLux.Modes
                 if (R.IsInRange(target) && target.IsValidTarget() && target.Health < Damage.RDamage(target))
                 {
                     var rPrediction = R.GetPrediction(target);
-                    if (rPrediction.HitChance < HitChance.High)
+                    if (rPrediction.HitChancePercent <= Program.hitchance)
                     {
                         R.Cast(rPrediction.CastPosition);
                     }

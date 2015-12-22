@@ -16,11 +16,11 @@ namespace LightLux.Modes
             // TODO: Add harass logic here
             if (Config.Modes.Harass.UseE && Q.IsReady())
             {
-                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.ServerPosition);
+                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);
                 if (target.IsValidTarget())
                 {
                     var qPrediction = Q.GetPrediction(target);
-                    if (qPrediction.HitChance >= HitChance.High)
+                    if (qPrediction.HitChancePercent <= Program.hitchance)
                     {
                         Q.Cast(qPrediction.CastPosition);
                     }
@@ -28,11 +28,11 @@ namespace LightLux.Modes
             }
             if (Config.Modes.Harass.UseE && E.IsReady())
             {
-                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.ServerPosition);
+                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.Position);
                 if (target.IsValidTarget())
                 {
                     var ePrediction = E.GetPrediction(target);
-                    if (ePrediction.HitChance >= HitChance.High)
+                    if (ePrediction.HitChancePercent <= Program.hitchance)
                     {
                         E.Cast(ePrediction.CastPosition);
                     }

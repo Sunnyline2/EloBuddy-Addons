@@ -13,6 +13,8 @@ namespace LightLux
             get { return ObjectManager.Player; }
         }
 
+        public const float hitchance = 80f;
+
         // Change this line to the champion you want to make the addon for,
         // watch out for the case being correct!
         public const string ChampName = "Lux";
