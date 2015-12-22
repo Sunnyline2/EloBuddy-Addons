@@ -1,6 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
+using System;
 
 namespace LightLux.Modes
 {
@@ -28,7 +29,6 @@ namespace LightLux.Modes
                 if (E.IsInRange(target) && target.IsValidTarget() && E.MinimumHitChance <= HitChance.High)
                 {
                     E.Cast(target);
-                    E2.Cast();
                 }
             }
 

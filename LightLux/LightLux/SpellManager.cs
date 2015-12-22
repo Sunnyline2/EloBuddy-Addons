@@ -12,6 +12,7 @@ namespace LightLux
         public static Spell.Skillshot E { get; set; }
         public static Spell.Active E2 { get; set; }
         public static Spell.Skillshot R { get; set; }
+        public static Spell.Skillshot R2 { get; set; }
 
         static SpellManager()
         {

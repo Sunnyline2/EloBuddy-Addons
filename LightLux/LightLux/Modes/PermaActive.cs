@@ -18,6 +18,10 @@ namespace LightLux.Modes
             {
                 Orbwalker.ForcedTarget = aaTarget;
             }
+            if (!(E.IsOnCooldown && E.IsReady()))
+            {
+                E2.Cast();
+            }
         }
     }
 }
