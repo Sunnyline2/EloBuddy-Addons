@@ -27,15 +27,11 @@ namespace LightLux
 
         private static void OnLoadingComplete(EventArgs args)
         {
-            // Verify the champion we made this addon for
             if (Player.Instance.ChampionName != ChampName)
             {
-                // Champion is not the one we made this addon for,
-                // therefore we return
+                Chat.Print("Wrong champion xDD");
                 return;
             }
-
-            // Initialize the classes that we need
             Config.Initialize();
             SpellManager.Initialize();
             ModeManager.Initialize();
@@ -44,6 +40,8 @@ namespace LightLux
 
         private static void OnDraw(EventArgs args)
         {
+            if (Program._Player.IsDead)
+                return;
             if (Config.Modes.Draw.ShowQ)
             {
                 Circle.Draw(Color.White, SpellManager.Q.Range, Player.Instance.Position);

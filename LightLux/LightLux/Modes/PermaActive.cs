@@ -19,10 +19,6 @@ namespace LightLux.Modes
             {
                 Orbwalker.ForcedTarget = aaTarget;
             }
-            if (!(E.IsOnCooldown && E.IsReady()))
-            {
-                E2.Cast();
-            }
             //KS
             var rTarget = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
             if (rTarget.IsValidTarget() && R.MinimumHitChance == HitChance.Immobile || R.MinimumHitChance == HitChance.Impossible && rTarget.Health < Damage.RDamage(rTarget))

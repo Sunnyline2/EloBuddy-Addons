@@ -13,7 +13,7 @@ namespace LightLux.Modes
             get { return SpellManager.Q; }
         }
 
-        protected Spell.Active W
+        protected Spell.Skillshot W
         {
             get { return SpellManager.W; }
         }
@@ -21,11 +21,6 @@ namespace LightLux.Modes
         protected Spell.Skillshot E
         {
             get { return SpellManager.E; }
-        }
-
-        protected Spell.Active E2
-        {
-            get { return SpellManager.E2; }
         }
 
         protected Spell.Skillshot R

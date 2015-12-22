@@ -8,25 +8,21 @@ namespace LightLux
     public static class SpellManager
     {
         public static Spell.Skillshot Q { get; set; }
-        public static Spell.Active W { get; set; }
+        public static Spell.Skillshot W { get; set; }
         public static Spell.Skillshot E { get; set; }
-        public static Spell.Active E2 { get; set; }
         public static Spell.Skillshot R { get; set; }
-        public static Spell.Skillshot R2 { get; set; }
 
         static SpellManager()
         {
-            Q = new Spell.Skillshot(SpellSlot.Q, 1300, SkillShotType.Linear, 50, 1200, 80);
-            W = new Spell.Active(SpellSlot.W, 1200);
-            E2 = new Spell.Active(SpellSlot.E, 350);
-            E = new Spell.Skillshot(SpellSlot.E, 1100, SkillShotType.Linear, 50, 1300, 275);
-            R = new Spell.Skillshot(SpellSlot.R, 3340, SkillShotType.Linear, 175, 3000, 190);
+            Q = new Spell.Skillshot(SpellSlot.Q, 1175, SkillShotType.Linear, 250, 1200, 80);
+            W = new Spell.Skillshot(SpellSlot.W, 1075, SkillShotType.Linear, 250, 1200, 150);
+            E = new Spell.Skillshot(SpellSlot.E, 1100, SkillShotType.Circular, 150, 1300, 275);
+            R = new Spell.Skillshot(SpellSlot.R, 3340, SkillShotType.Linear, 1135, Int32.MaxValue, 190);
         }
 
         public static void Initialize()
         {
             E.AllowedCollisionCount = Int32.MaxValue;
-            Q.AllowedCollisionCount = 1;
             R.AllowedCollisionCount = Int32.MaxValue;
             Chat.Print("<< LightLux >>");
         }

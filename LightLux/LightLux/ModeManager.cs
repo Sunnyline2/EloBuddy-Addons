@@ -28,6 +28,7 @@ namespace LightLux
 
             // Listen to events we need
             Game.OnTick += OnTick;
+            Game.OnUpdate += OnTick;
         }
 
         public static void Initialize()
