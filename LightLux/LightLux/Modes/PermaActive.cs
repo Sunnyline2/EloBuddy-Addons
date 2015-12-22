@@ -14,11 +14,15 @@ namespace LightLux.Modes
         public override void Execute()
         {
             // Forced aa
-            var aaTarget = TargetSelector.GetTarget(Program._Player.AttackRange, DamageType.Mixed);
-            if (Damage.LuxPassive(aaTarget) && aaTarget.IsValidTarget())
-            {
-                Orbwalker.ForcedTarget = aaTarget;
-            }
+            //       var aaTarget = TargetSelector.GetTarget(Program._Player.AttackRange, DamageType.Mixed);
+            //       if (Damage.LuxPassive(aaTarget) && aaTarget.IsValidTarget())
+            //     {
+            //          Orbwalker.ForcedTarget = aaTarget;
+            //     }
+            //       else
+            //      {
+            //           Orbwalker.ForcedTarget = null;
+            //      }
         }
     }
 }
