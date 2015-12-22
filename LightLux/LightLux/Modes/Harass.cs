@@ -20,7 +20,7 @@ namespace LightLux.Modes
                 if (target.IsValidTarget())
                 {
                     var qPrediction = Q.GetPrediction(target);
-                    if (qPrediction.HitChance == HitChance.Immobile)
+                    if (qPrediction.HitChance <= HitChance.High)
                     {
                         Q.Cast(qPrediction.CastPosition);
                     }
@@ -32,7 +32,7 @@ namespace LightLux.Modes
                 if (target.IsValidTarget())
                 {
                     var ePrediction = E.GetPrediction(target);
-                    if (ePrediction.HitChance == HitChance.Immobile)
+                    if (ePrediction.HitChance <= HitChance.High)
                     {
                         E.Cast(ePrediction.CastPosition);
                     }
