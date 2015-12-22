@@ -18,7 +18,7 @@ namespace LightLux.Modes
             {
                 var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);
                 var qPrediction = Q.GetPrediction(target);
-                if (qPrediction.HitChancePercent <= Program.hitchance)
+                if (qPrediction.HitChancePercent <= Program.hitchance && target != null)
                 {
                     Q.Cast(qPrediction.CastPosition);
                 }
@@ -30,7 +30,7 @@ namespace LightLux.Modes
                 if (E.IsInRange(target) && target.IsValidTarget())
                 {
                     var ePrediction = E.GetPrediction(target);
-                    if (ePrediction.HitChancePercent <= Program.hitchance)
+                    if (ePrediction.HitChancePercent <= Program.hitchance && target != null)
                     {
                         E.Cast(ePrediction.CastPosition);
                     }
@@ -48,7 +48,7 @@ namespace LightLux.Modes
                 if (R.IsInRange(target) && target.IsValidTarget() && target.Health < Damage.RDamage(target))
                 {
                     var rPrediction = R.GetPrediction(target);
-                    if (rPrediction.HitChancePercent <= Program.hitchance)
+                    if (rPrediction.HitChancePercent <= Program.hitchance && target != null)
                     {
                         R.Cast(rPrediction.CastPosition);
                     }
