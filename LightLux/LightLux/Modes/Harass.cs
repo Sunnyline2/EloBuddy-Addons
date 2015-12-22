@@ -17,18 +17,25 @@ namespace LightLux.Modes
             if (Config.Modes.Harass.UseE && Q.IsReady())
             {
                 var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
-                if (target.IsValidTarget() && Q.MinimumHitChance <= HitChance.High)
+                if (target.IsValidTarget())
                 {
-                    Q.Cast(target);
+                    var qPrediction = Q.GetPrediction(target);
+                    if (qPrediction.HitChance == HitChance.Immobile)
+                    {
+                        Q.Cast(qPrediction.CastPosition);
+                    }
                 }
             }
             if (Config.Modes.Harass.UseE && E.IsReady())
             {
                 var target = TargetSelector.GetTarget(E.Range, DamageType.Magical);
-                if (target.IsValidTarget() && E.MinimumHitChance <= HitChance.High)
+                if (target.IsValidTarget())
                 {
-                    E.Cast(target);
-                    E2.Cast();
+                    var ePrediction = E.GetPrediction(target);
+                    if (ePrediction.HitChance == HitChance.Immobile)
+                    {
+                        E.Cast(ePrediction.CastPosition);
+                    }
                 }
             }
         }

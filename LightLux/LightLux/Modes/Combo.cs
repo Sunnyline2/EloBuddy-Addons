@@ -16,19 +16,27 @@ namespace LightLux.Modes
         {
             if (Q.IsReady() && Config.Modes.Combo.UseQ)
             {
-                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical);
-                if (Q.IsInRange(target) && target.IsValidTarget() && Q.MinimumHitChance <= HitChance.Medium)
+                var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.ServerPosition);
+                if (Q.IsInRange(target) && target.IsValidTarget())
                 {
-                    Q.Cast(target);
+                    var qPrediction = Q.GetPrediction(target);
+                    if (qPrediction.HitChance == HitChance.Immobile)
+                    {
+                        Q.Cast(qPrediction.CastPosition);
+                    }
                 }
             }
 
             if (E.IsReady() && Config.Modes.Combo.UseE)
             {
-                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical);
-                if (E.IsInRange(target) && target.IsValidTarget() && E.MinimumHitChance <= HitChance.High)
+                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.ServerPosition);
+                if (E.IsInRange(target) && target.IsValidTarget())
                 {
-                    E.Cast(target);
+                    var ePrediction = E.GetPrediction(target);
+                    if (ePrediction.HitChance == HitChance.Immobile)
+                    {
+                        E.Cast(ePrediction.CastPosition);
+                    }
                 }
             }
 
@@ -39,10 +47,14 @@ namespace LightLux.Modes
 
             if (R.IsReady() && Config.Modes.Combo.UseR)
             {
-                var target = TargetSelector.GetTarget(R.Range, DamageType.Magical);
+                var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
                 if (R.IsInRange(target) && target.IsValidTarget() && R.MinimumHitChance <= HitChance.High)
                 {
-                    R.Cast(target);
+                    var rPrediction = R.GetPrediction(target);
+                    if (rPrediction.HitChance == HitChance.Immobile)
+                    {
+                        R.Cast(rPrediction.CastPosition);
+                    }
                 }
             }
         }
