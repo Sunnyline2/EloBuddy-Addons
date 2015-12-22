@@ -45,10 +45,11 @@ namespace LightLux.Modes
             if (R.IsReady() && Config.Modes.Combo.UseR)
             {
                 var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
-                if (R.IsInRange(target) && target.IsValidTarget() && target.Health < Damage.RDamage(target))
+                Chat.Print("R DMG: " + Damage.RDamage(target));
+                if (R.IsInRange(target) && target.IsValidTarget() && target.Health <= Damage.RDamage(target))
                 {
                     var rPrediction = R.GetPrediction(target);
-                    if (rPrediction.HitChancePercent <= Program.hitchance && target != null)
+                    if (rPrediction.HitChancePercent <= Program.hitchance)
                     {
                         R.Cast(rPrediction.CastPosition);
                     }
