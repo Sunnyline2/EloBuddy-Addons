@@ -13,7 +13,7 @@ namespace LightLux
             get { return ObjectManager.Player; }
         }
 
-        public const float hitchanceCombo = 80f;
+        public const float hitchanceCombo = 100f;
         public const float hitchanceHarras = 100f;
         public static GameObject EObject;
 

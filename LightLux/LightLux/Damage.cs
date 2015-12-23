@@ -27,8 +27,13 @@ namespace LightLux
         public static float RDamage(Obj_AI_Base target)
         {
             if (LuxPassive(target))
+            {
                 return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R) + 10 + 8 * Player.Instance.Level + Player.Instance.TotalMagicalDamage * 20;
-            return 0;
+            }
+            else
+            {
+                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R);
+            }
         }
 
         public static float IgniteDamage(Obj_AI_Base target)
