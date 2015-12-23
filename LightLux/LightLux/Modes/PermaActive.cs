@@ -31,21 +31,26 @@ namespace LightLux.Modes
                 }
             }
 
-            if (Program.EObject == null)
-                return;
-            foreach (var enemy in ObjectManager.Get<Obj_AI_Base>().Where(enemy => enemy.IsValidTarget() && enemy.IsEnemy && Vector3.Distance(Program.EObject.Position, enemy.Position) <= E.Width + 15))
+            if (Program.EObject != null)
             {
-                Program.DrawLog("Wybucham E w " + enemy.Name + " bije za:" + Damage.EDamage(enemy), Color.MediumVioletRed);
-                E2.Cast();
+                foreach (var enemy in ObjectManager.Get<Obj_AI_Base>().Where(enemy => enemy.IsValidTarget() && enemy.IsEnemy && Vector3.Distance(Program.EObject.Position, enemy.Position) <= E.Width + 15))
+                {
+                    Program.DrawLog("Wybucham E w " + enemy.Name + " bije za:" + Damage.EDamage(enemy), Color.MediumVioletRed);
+                    E2.Cast();
+                }
             }
 
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
-                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.IsGhosted || !ally.IsZombie ||
-                    !ally.IsInvulnerable || ally.HealthPercent > 20)
+                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent > 40 && ally.CountEnemiesInRange(700) < 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam tarcza w " + ally.Name, Color.MediumVioletRed);
+                }
+                else if (ally.IsMe && ally.CountEnemiesInRange(700) < 0)
+                {
+                    W.Cast(ally);
+                    Program.DrawLog("Pomagam sobie tarczą!", Color.MediumVioletRed);
                 }
             }
         }
