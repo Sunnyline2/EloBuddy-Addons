@@ -28,7 +28,7 @@ namespace LightLux.Modes
                             var qPred = Q.GetPrediction(target);
                             if (qPred.HitChancePercent <= Program.hitchanceCombo)
                             {
-                                Chat.Print(Damage.QDamage(target));
+                                Program.DrawLog("Bije z Q w:" + target.ChampionName + " DMG:" + Damage.QDamage(target), Color.CadetBlue);
                                 Q.Cast(qPred.CastPosition);
                             }
                         }
@@ -44,6 +44,7 @@ namespace LightLux.Modes
                             var ePred = E.GetPrediction(target);
                             if (ePred.HitChancePercent <= Program.hitchanceCombo)
                             {
+                                Program.DrawLog("Bije z E w:" + target.ChampionName + " DMG:" + Damage.EDamage(target), Color.CadetBlue);
                                 E.Cast(ePred.CastPosition);
                             }
                         }
@@ -73,6 +74,7 @@ namespace LightLux.Modes
                             var rPred = R.GetPrediction(target);
                             if (rPred.HitChancePercent <= 80 && !target.IsDead)
                             {
+                                Program.DrawLog("Bije z R w:" + target.ChampionName + " DMG:" + Damage.RDamage(target), Color.CadetBlue);
                                 R.Cast(rPred.CastPosition);
                             }
                         }

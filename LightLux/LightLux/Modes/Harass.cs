@@ -1,6 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
+using System.Drawing;
 
 namespace LightLux.Modes
 {
@@ -22,6 +23,7 @@ namespace LightLux.Modes
                     var qPrediction = Q.GetPrediction(target);
                     if (qPrediction.HitChancePercent <= Program.hitchanceHarras && target != null)
                     {
+                        Program.DrawLog("Harrasuje z Q w:" + target.ChampionName + " DMG:" + Damage.QDamage(target), Color.CadetBlue);
                         Q.Cast(qPrediction.CastPosition);
                     }
                 }
@@ -34,6 +36,7 @@ namespace LightLux.Modes
                     var ePrediction = E.GetPrediction(target);
                     if (ePrediction.HitChancePercent <= Program.hitchanceHarras && target != null)
                     {
+                        Program.DrawLog("Harrasuje z E w:" + target.ChampionName + " DMG:" + Damage.QDamage(target), Color.CadetBlue);
                         E.Cast(ePrediction.CastPosition);
                     }
                 }
