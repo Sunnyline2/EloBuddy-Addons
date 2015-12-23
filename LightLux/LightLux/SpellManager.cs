@@ -23,7 +23,7 @@ namespace LightLux
         public static void Initialize()
         {
             E.AllowedCollisionCount = Int32.MaxValue;
-            Q.AllowedCollisionCount = 1;
+            Q.AllowedCollisionCount = 0;
             W.AllowedCollisionCount = Int32.MaxValue;
             R.AllowedCollisionCount = Int32.MaxValue;
             Chat.Print("<< LightLux >>");

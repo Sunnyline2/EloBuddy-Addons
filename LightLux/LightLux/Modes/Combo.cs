@@ -28,6 +28,7 @@ namespace LightLux.Modes
                             var qPred = Q.GetPrediction(target);
                             if (qPred.HitChancePercent <= Program.hitchanceCombo)
                             {
+                                Chat.Print(Damage.QDamage(target));
                                 Q.Cast(qPred.CastPosition);
                             }
                         }
@@ -55,17 +56,9 @@ namespace LightLux.Modes
                     {
                         foreach (var ally in EntityManager.Heroes.Allies.ToArray())
                         {
-                            if (ally.IsValid() & ally != null)
-                            {
-                                if (ally.IsInRange(Player.Instance, W.Range))
-                                {
-                                    var wPred = W.GetPrediction(ally);
-                                    if (wPred.HitChancePercent < Program.hitchanceCombo)
-                                    {
-                                        W.Cast(wPred.CastPosition);
-                                    }
-                                }
-                            }
+                            if (ally.IsStunned || ally.IsCharmed || !ally.IsDead || ally.IsZombie ||
+                                ally.IsTargetableToTeam)
+                                W.Cast(ally);
                         }
                     }
                 }
@@ -78,7 +71,7 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy && target.Health < Damage.RDamage(target))
                         {
                             var rPred = R.GetPrediction(target);
-                            if (rPred.HitChancePercent <= 80)
+                            if (rPred.HitChancePercent <= 80 && !target.IsDead)
                             {
                                 R.Cast(rPred.CastPosition);
                             }

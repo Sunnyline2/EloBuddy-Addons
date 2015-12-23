@@ -32,6 +32,15 @@ namespace LightLux.Modes
                     Orbwalker.ForcedTarget = null;
                 }
             }
+            if (Damage.LuxE())
+            {
+                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.Position);
+                if (target.IsValidTarget() && target.IsEnemy && !target.IsDead)
+                {
+                    Program.DrawLog("Kastuje E dla " + target.ChampionName, Color.Blue);
+                    E.Cast(target);
+                }
+            }
         }
     }
 }

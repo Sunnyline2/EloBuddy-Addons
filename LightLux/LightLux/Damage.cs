@@ -8,24 +8,27 @@ namespace LightLux
     {
         public static float QDamage(Obj_AI_Base target)
         {
-            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 60, 110, 160, 210, 260 }[SpellManager.Q.Level] + (Player.Instance.TotalMagicalDamage * 0.7f)));
+            return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.Q);
         }
 
         public static float WDamage(Obj_AI_Base target)
         {
-            return 0;
+            return 0f;
         }
 
         public static float EDamage(Obj_AI_Base target)
         {
-            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 60, 105, 150, 195, 240 }[SpellManager.E.Level] + (Program._Player.TotalMagicalDamage * 0.6f)));
+            return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.E);
         }
 
         public static float RDamage(Obj_AI_Base target)
         {
-            var dmg = Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 300, 400, 500 }[SpellManager.R.Level] + (Program._Player.TotalMagicalDamage * 0.75f)));
-            Program.DrawLog("R: " + int.Parse(dmg.ToString()), Color.Red);
-            return dmg;
+            return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R);
+        }
+
+        public static float IgniteDamage(Obj_AI_Base target)
+        {
+            return Player.Instance.GetSummonerSpellDamage(target, DamageLibrary.SummonerSpells.Ignite);
         }
 
         public static bool LuxPassive(Obj_AI_Base target)
@@ -37,9 +40,9 @@ namespace LightLux
             return false;
         }
 
-        public static bool LuxE(Obj_AI_Base target)
+        public static bool LuxE()
         {
-            if (target.HasBuff(""))
+            if (Player.HasBuff("LuxLightStrikeKugel"))
             {
                 return true;
             }
