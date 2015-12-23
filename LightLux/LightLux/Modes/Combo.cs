@@ -24,9 +24,9 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy)
                         {
                             var qPred = Q.GetPrediction(target);
-                            if (qPred.HitChancePercent <= Program.hitchanceCombo)
+                            if (qPred.HitChancePercent >= Program.hitchanceCombo)
                             {
-                                Program.DrawLog("Bije z Q w:" + target.ChampionName + " DMG:" + Damage.QDamage(target), Color.CadetBlue);
+                                Program.DrawLog("Bije z Q w:" + target.ChampionName + " DMG:" + Damage.QDamage(target) + " HC:" + qPred.HitChancePercent, Color.CadetBlue);
                                 Q.Cast(qPred.CastPosition);
                             }
                         }
@@ -40,9 +40,9 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy)
                         {
                             var ePred = E.GetPrediction(target);
-                            if (ePred.HitChancePercent <= Program.hitchanceCombo)
+                            if (ePred.HitChancePercent >= Program.hitchanceCombo)
                             {
-                                Program.DrawLog("Bije z E w:" + target.ChampionName + " DMG:" + Damage.EDamage(target), Color.CadetBlue);
+                                Program.DrawLog("Bije z E w:" + target.ChampionName + " DMG:" + Damage.EDamage(target) + " HC:" + ePred.HitChancePercent, Color.CadetBlue);
                                 E.Cast(ePred.CastPosition);
                             }
                         }
@@ -57,9 +57,9 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy && target.Health < Damage.RDamage(target))
                         {
                             var rPred = R.GetPrediction(target);
-                            if (rPred.HitChancePercent <= Program.hitchanceCombo && !target.IsDead)
+                            if (rPred.HitChancePercent >= Program.hitchanceCombo && !target.IsDead)
                             {
-                                Program.DrawLog("Bije z R w:" + target.ChampionName + " DMG:" + Damage.RDamage(target), Color.CadetBlue);
+                                Program.DrawLog("Bije z R w:" + target.ChampionName + " DMG:" + Damage.RDamage(target) + " HC:" + rPred.HitChancePercent, Color.CadetBlue);
                                 R.Cast(rPred.CastPosition);
                             }
                         }

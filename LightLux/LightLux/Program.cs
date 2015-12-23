@@ -13,8 +13,8 @@ namespace LightLux
             get { return ObjectManager.Player; }
         }
 
-        public const float hitchanceCombo = 100f;
-        public const float hitchanceHarras = 100f;
+        public const float hitchanceCombo = 90f;
+        public const float hitchanceHarras = 90f;
         public static GameObject EObject;
 
         // Change this line to the champion you want to make the addon for,
