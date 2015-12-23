@@ -49,10 +49,6 @@ namespace LightLux.Modes
                     }
                 }
 
-                if (Config.Modes.Combo.UseW)
-                {
-                }
-
                 if (Config.Modes.Combo.UseR)
                 {
                     if (R.IsReady() && R.IsLearned)
@@ -61,7 +57,7 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy && target.Health < Damage.RDamage(target))
                         {
                             var rPred = R.GetPrediction(target);
-                            if (rPred.HitChancePercent <= 80 && !target.IsDead)
+                            if (rPred.HitChancePercent <= Program.hitchanceCombo && !target.IsDead)
                             {
                                 Program.DrawLog("Bije z R w:" + target.ChampionName + " DMG:" + Damage.RDamage(target), Color.CadetBlue);
                                 R.Cast(rPred.CastPosition);

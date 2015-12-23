@@ -52,8 +52,11 @@ namespace LightLux
         {
             if (obj != null && obj.Name.Contains("Lux_Base_E_mis.troy"))
             {
-                EObject = obj;
-                Program.DrawLog(obj.Name + " created! Pos:" + obj.Position, System.Drawing.Color.YellowGreen);
+                if (obj.IsMe)
+                {
+                    EObject = obj;
+                    Program.DrawLog(obj.Name + " created! Pos:" + obj.Position, System.Drawing.Color.YellowGreen);
+                }
             }
         }
 
@@ -61,8 +64,11 @@ namespace LightLux
         {
             if (obj != null && obj.Name.Contains("Lux_Base_E_mis.troy"))
             {
-                EObject = null;
-                Program.DrawLog(obj.Name + " removed! Pos:" + obj.Position, System.Drawing.Color.YellowGreen);
+                if (obj.IsMe)
+                {
+                    EObject = null;
+                    Program.DrawLog(obj.Name + " removed! Pos:" + obj.Position, System.Drawing.Color.YellowGreen);
+                }
             }
         }
 
