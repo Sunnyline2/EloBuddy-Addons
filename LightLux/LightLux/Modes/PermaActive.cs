@@ -21,13 +21,6 @@ namespace LightLux.Modes
                 {
                     Program.DrawLog("Focus:" + enemy.ChampionName + " luxpassive", Color.NavajoWhite);
                     Player.IssueOrder(GameObjectOrder.AttackUnit, enemy);
-                    Orbwalker.DisableAttacking = true;
-                    Orbwalker.DisableMovement = true;
-                }
-                else
-                {
-                    Orbwalker.DisableAttacking = false;
-                    Orbwalker.DisableMovement = false;
                 }
             }
 
@@ -42,7 +35,7 @@ namespace LightLux.Modes
 
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
-                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent < 40 && ally.CountEnemiesInRange(700) > 0)
+                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent < 60 && ally.CountEnemiesInRange(700) > 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam tarcza w " + ally.Name, Color.MediumVioletRed);

@@ -7,7 +7,9 @@ namespace LightLux
     {
         public static float QDamage(Obj_AI_Base target)
         {
-            return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.Q);
+            if (SpellManager.Q.IsReady())
+                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.Q);
+            return 0f;
         }
 
         public static float WDamage(Obj_AI_Base target)
@@ -17,12 +19,16 @@ namespace LightLux
 
         public static float EDamage(Obj_AI_Base target)
         {
-            return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.E);
+            if (SpellManager.E.IsReady())
+                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.E);
+            return 0f;
         }
 
         public static float RDamage(Obj_AI_Base target)
         {
-            return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R);
+            if (LuxPassive(target))
+                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R) + 10 + 8 * Player.Instance.Level + Player.Instance.TotalMagicalDamage * 20;
+            return 0;
         }
 
         public static float IgniteDamage(Obj_AI_Base target)
