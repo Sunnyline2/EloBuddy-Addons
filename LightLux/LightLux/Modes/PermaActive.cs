@@ -23,6 +23,7 @@ namespace LightLux.Modes
             {
                 if (Damage.LuxPassive(enemy) && enemy.IsInAutoAttackRange(enemy))
                 {
+                    Chat.Print("Focusuje " + enemy.ChampionName " z luxpassive");
                     Orbwalker.ForcedTarget = enemy;
                 }
                 else

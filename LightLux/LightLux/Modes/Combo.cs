@@ -17,58 +17,77 @@ namespace LightLux.Modes
         {
             try
             {
-                if (Q.IsReady() && Config.Modes.Combo.UseQ)
+                if (Config.Modes.Combo.UseQ)
                 {
-                    var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);
-                    var qPrediction = Q.GetPrediction(target);
-                    if (qPrediction.HitChancePercent <= Program.hitchance && target != null)
+                    if (Q.IsReady() && Q.IsLearned)
                     {
-                        Q.Cast(qPrediction.CastPosition);
+                        var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);
+                        if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy)
+                        {
+                            var qPred = Q.GetPrediction(target);
+                            if (qPred.HitChancePercent <= 80)
+                            {
+                                Q.Cast(qPred.CastPosition);
+                            }
+                        }
                     }
                 }
-
-                if (E.IsReady() && Config.Modes.Combo.UseE)
+                if (Config.Modes.Combo.UseE)
                 {
-                    var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.Position);
-                    if (E.IsInRange(target) && target.IsValidTarget())
+                    if (E.IsReady() && E.IsLearned)
                     {
-                        var ePrediction = E.GetPrediction(target);
-                        if (ePrediction.HitChancePercent <= Program.hitchance && target != null)
+                        var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.Position);
+                        if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy)
                         {
-                            E.Cast(ePrediction.CastPosition);
+                            var ePred = E.GetPrediction(target);
+                            if (ePred.HitChancePercent <= 80)
+                            {
+                                E.Cast(ePred.CastPosition);
+                            }
                         }
                     }
                 }
 
-                if (W.IsReady() && Config.Modes.Combo.UseW)
+                if (Config.Modes.Combo.UseW)
                 {
-                    foreach (var allies in EntityManager.Heroes.Allies)
+                    if (W.IsReady() && W.IsLearned)
                     {
-                        if (allies != null && allies.IsValid)
+                        foreach (var ally in EntityManager.Heroes.Allies.ToArray())
                         {
-                            if (allies.IsCharmed || allies.IsAttackingPlayer || allies.IsFeared || allies.IsStunned ||
-                                allies.IsTaunted || allies.IsValid)
-                                W.Cast(allies);
+                            if (ally.IsValid() & ally != null)
+                            {
+                                if (ally.IsInRange(Player.Instance, W.Range))
+                                {
+                                    var wPred = W.GetPrediction(ally);
+                                    if (wPred.HitChancePercent < 80)
+                                    {
+                                        W.Cast(wPred.CastPosition);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
 
-                if (R.IsReady() && Config.Modes.Combo.UseR)
+                if (Config.Modes.Combo.UseR)
                 {
-                    var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.Position);
-                    if (R.IsInRange(target) && target.IsValidTarget() && target.Health <= Damage.RDamage(target))
+                    if (R.IsReady() && R.IsLearned)
                     {
-                        var rPrediction = R.GetPrediction(target);
-                        if (rPrediction.HitChancePercent <= Program.hitchance && target != null)
+                        var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.Position);
+                        if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy && target.Health < Damage.RDamage(target))
                         {
-                            R.Cast(rPrediction.CastPosition);
+                            var rPred = R.GetPrediction(target);
+                            if (rPred.HitChancePercent <= 80)
+                            {
+                                R.Cast(rPred.CastPosition);
+                            }
                         }
                     }
                 }
             }
             catch (Exception stack)
             {
-                Chat.Print(stack.StackTrace);
+                Chat.Print(stack.Message);
             }
         }
     }

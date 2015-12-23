@@ -22,7 +22,9 @@ namespace LightLux
 
         public static float RDamage(Obj_AI_Base target)
         {
-            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 300, 400, 500 }[SpellManager.R.Level] + (Program._Player.TotalMagicalDamage * 0.75f)));
+            var dmg = Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 300, 400, 500 }[SpellManager.R.Level] + (Program._Player.TotalMagicalDamage * 0.75f)));
+            Chat.Print("R: " + int.Parse(dmg.ToString()));
+            return dmg;
         }
 
         public static bool LuxPassive(Obj_AI_Base target)
@@ -31,10 +33,15 @@ namespace LightLux
             {
                 return true;
             }
-            else
+            return false;
+        }
+
+        public static bool LuxE(Obj_AI_Base target)
+        {
+            if (target.HasBuff(""))
             {
-                return false;
             }
+            return false;
         }
     }
 }

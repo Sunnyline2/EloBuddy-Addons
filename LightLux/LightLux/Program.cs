@@ -48,17 +48,17 @@ namespace LightLux
             }
             if (Config.Modes.Draw.ShowE)
             {
-                Circle.Draw(Color.White, SpellManager.E.Range, Player.Instance.Position);
+                Circle.Draw(Color.Blue, SpellManager.E.Range, Player.Instance.Position);
             }
 
             if (Config.Modes.Draw.ShowR)
             {
-                Circle.Draw(Color.White, SpellManager.R.Range, Player.Instance.Position);
+                Circle.Draw(Color.Red, SpellManager.R.Range, Player.Instance.Position);
             }
 
             if (Config.Modes.Draw.ShowW)
             {
-                Circle.Draw(Color.White, SpellManager.W.Range, Player.Instance.Position);
+                Circle.Draw(Color.Green, SpellManager.W.Range, Player.Instance.Position);
             }
         }
     }
