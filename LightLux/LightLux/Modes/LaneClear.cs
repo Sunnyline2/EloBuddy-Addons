@@ -17,11 +17,9 @@ namespace LightLux.Modes
             {
                 if (minion.IsValidTarget())
                 {
-                    if (Damage.LuxPassive(minion))
-                        Orbwalker.ForcedTarget = minion;
                     Q.Cast(minion);
-                    if (Damage.LuxPassive(minion))
-                        Orbwalker.ForcedTarget = minion;
+                    if (!(minion.IsValidTarget()))
+                        return;
                     E.Cast(minion);
                 }
             }
@@ -31,11 +29,9 @@ namespace LightLux.Modes
                 if (monster.IsValidTarget())
                 {
                     W.Cast();
-                    if (Damage.LuxPassive(monster))
-                        Orbwalker.ForcedTarget = monster;
                     E.Cast(monster);
-                    if (Damage.LuxPassive(monster))
-                        Orbwalker.ForcedTarget = monster;
+                    if (!(monster.IsValidTarget()))
+                        return;
                     Q.Cast(monster);
                 }
             }
