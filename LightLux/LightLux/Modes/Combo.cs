@@ -1,6 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
+using EloBuddy.SDK.Utils;
 using System;
 
 namespace LightLux.Modes
@@ -41,7 +42,7 @@ namespace LightLux.Modes
             {
                 foreach (var allies in EntityManager.Heroes.Allies)
                 {
-                    if (allies != null)
+                    if (allies != null && allies.IsValid)
                     {
                         if (allies.IsCharmed || allies.IsAttackingPlayer || allies.IsFeared || allies.IsStunned ||
                             allies.IsTaunted || allies.IsValid)
@@ -52,12 +53,11 @@ namespace LightLux.Modes
 
             if (R.IsReady() && Config.Modes.Combo.UseR)
             {
-                var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.ServerPosition);
-                Chat.Print("R DMG: " + Damage.RDamage(target));
+                var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.Position);
                 if (R.IsInRange(target) && target.IsValidTarget() && target.Health <= Damage.RDamage(target))
                 {
                     var rPrediction = R.GetPrediction(target);
-                    if (rPrediction.HitChancePercent <= Program.hitchance)
+                    if (rPrediction.HitChancePercent <= Program.hitchance && target != null)
                     {
                         R.Cast(rPrediction.CastPosition);
                     }

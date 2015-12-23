@@ -17,12 +17,12 @@ namespace LightLux
 
         public static float EDamage(Obj_AI_Base target)
         {
-            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 60, 105, 150, 195, 240 }[SpellManager.E.Level] + (Player.Instance.TotalMagicalDamage * 0.6f)));
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 60, 105, 150, 195, 240 }[SpellManager.E.Level] + (Program._Player.TotalMagicalDamage * 0.6f)));
         }
 
         public static float RDamage(Obj_AI_Base target)
         {
-            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 300, 400, 500 }[SpellManager.R.Level] + (Player.Instance.TotalMagicalDamage * 0.75f)));
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 300, 400, 500 }[SpellManager.R.Level] + (Program._Player.TotalMagicalDamage * 0.75f)));
         }
 
         public static bool LuxPassive(Obj_AI_Base target)
