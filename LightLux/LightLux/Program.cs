@@ -50,20 +50,20 @@ namespace LightLux
 
         private static void OnCreateObject(GameObject obj, EventArgs args)
         {
-            if (EObject == null && obj.Name.Contains("LuxLightstrike_tar_green"))
+            if (obj != null && obj.Name.Contains("Lux_Base_E_mis.troy"))
             {
                 EObject = obj;
+                Program.DrawLog(obj.Name + " created! Pos:" + obj.Position, System.Drawing.Color.YellowGreen);
             }
-            Program.DrawLog(obj.Name + " created!", System.Drawing.Color.YellowGreen);
         }
 
         private static void OnDeleteObject(GameObject obj, EventArgs args)
         {
-            if (EObject != null && obj.Name.Contains("LuxLightstrike_tar_green"))
+            if (obj != null && obj.Name.Contains("Lux_Base_E_mis.troy"))
             {
                 EObject = null;
+                Program.DrawLog(obj.Name + " removed! Pos:" + obj.Position, System.Drawing.Color.YellowGreen);
             }
-            Program.DrawLog(obj.Name + " removed!", System.Drawing.Color.YellowGreen);
         }
 
         private static void OnDraw(EventArgs args)

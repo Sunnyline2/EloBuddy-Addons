@@ -1,6 +1,5 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using System.Drawing;
 
 namespace LightLux
 {
