@@ -51,15 +51,6 @@ namespace LightLux.Modes
 
                 if (Config.Modes.Combo.UseW)
                 {
-                    if (W.IsReady() && W.IsLearned)
-                    {
-                        foreach (var ally in EntityManager.Heroes.Allies.ToArray())
-                        {
-                            if (ally.IsStunned || ally.IsCharmed || !ally.IsDead || ally.IsZombie ||
-                                ally.IsTargetableToTeam)
-                                W.Cast(ally);
-                        }
-                    }
                 }
 
                 if (Config.Modes.Combo.UseR)

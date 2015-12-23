@@ -42,12 +42,12 @@ namespace LightLux.Modes
 
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
-                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent > 40 && ally.CountEnemiesInRange(700) < 0)
+                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent < 40 && ally.CountEnemiesInRange(700) > 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam tarcza w " + ally.Name, Color.MediumVioletRed);
                 }
-                else if (ally.IsMe && ally.CountEnemiesInRange(700) < 0)
+                else if (ally.IsMe && ally.CountEnemiesInRange(700) > 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam sobie tarczą!", Color.MediumVioletRed);
