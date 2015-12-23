@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AddonTemplate")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("LightLux")]
+[assembly: AssemblyDescription("EloBuddy script")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AddonTemplate")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Sunnyline2")]
+[assembly: AssemblyProduct("LightLux")]
+[assembly: AssemblyCopyright("Copyright © Sunnyline2 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
