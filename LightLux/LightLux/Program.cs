@@ -13,7 +13,8 @@ namespace LightLux
             get { return ObjectManager.Player; }
         }
 
-        public const float hitchance = 80f;
+        public const float hitchanceCombo = 80f;
+        public const float hitchanceHarras = 100f;
 
         // Change this line to the champion you want to make the addon for,
         // watch out for the case being correct!
@@ -36,6 +37,12 @@ namespace LightLux
             SpellManager.Initialize();
             ModeManager.Initialize();
             Drawing.OnDraw += OnDraw;
+        }
+
+        public static void DrawLog(string text, System.Drawing.Color kolor)
+        {
+            if (Config.Modes.Misc.Debug)
+                Chat.Print(text, kolor);
         }
 
         private static void OnDraw(EventArgs args)

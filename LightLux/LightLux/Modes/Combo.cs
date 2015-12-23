@@ -3,6 +3,7 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using EloBuddy.SDK.Utils;
 using System;
+using System.Drawing;
 
 namespace LightLux.Modes
 {
@@ -25,7 +26,7 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy)
                         {
                             var qPred = Q.GetPrediction(target);
-                            if (qPred.HitChancePercent <= 80)
+                            if (qPred.HitChancePercent <= Program.hitchanceCombo)
                             {
                                 Q.Cast(qPred.CastPosition);
                             }
@@ -40,7 +41,7 @@ namespace LightLux.Modes
                         if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy)
                         {
                             var ePred = E.GetPrediction(target);
-                            if (ePred.HitChancePercent <= 80)
+                            if (ePred.HitChancePercent <= Program.hitchanceCombo)
                             {
                                 E.Cast(ePred.CastPosition);
                             }
@@ -59,7 +60,7 @@ namespace LightLux.Modes
                                 if (ally.IsInRange(Player.Instance, W.Range))
                                 {
                                     var wPred = W.GetPrediction(ally);
-                                    if (wPred.HitChancePercent < 80)
+                                    if (wPred.HitChancePercent < Program.hitchanceCombo)
                                     {
                                         W.Cast(wPred.CastPosition);
                                     }
@@ -87,7 +88,7 @@ namespace LightLux.Modes
             }
             catch (Exception stack)
             {
-                Chat.Print(stack.Message);
+                Program.DrawLog(stack.Message, Color.Aqua);
             }
         }
     }

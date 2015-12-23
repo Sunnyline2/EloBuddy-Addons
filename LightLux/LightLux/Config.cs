@@ -33,10 +33,12 @@ namespace LightLux
 
             static Modes()
             {
-                Menu = Config.Menu.AddSubMenu("Modes");
+                Menu = Config.Menu.AddSubMenu("Config");
                 Combo.Initialize();
                 Menu.AddSeparator();
                 Harass.Initialize();
+                Menu.AddSeparator();
+                Misc.Initialize();
                 Menu.AddSeparator();
             }
 
@@ -138,6 +140,24 @@ namespace LightLux
                     Menu.Add("drawW", new CheckBox("Show W Range", false));
                     Menu.Add("drawE", new CheckBox("Show E Range", true));
                     Menu.Add("drawR", new CheckBox("Show R Range", false));
+                }
+
+                public static void Initialize()
+                {
+                }
+            }
+
+            public static class Misc
+            {
+                public static bool Debug
+                {
+                    get { return Menu["Debug"].Cast<CheckBox>().CurrentValue; }
+                }
+
+                static Misc()
+                {
+                    Menu.AddGroupLabel("Misc");
+                    Menu.Add("Debug", new CheckBox("Show debug log", true));
                 }
 
                 public static void Initialize()

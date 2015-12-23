@@ -1,6 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
+using System.Drawing;
 using System.Linq;
 
 namespace LightLux.Modes
@@ -21,9 +22,9 @@ namespace LightLux.Modes
                         .Where(t => Program._Player.GetAutoAttackRange() >= t.Distance(Program._Player))
                         .Where(t => t.IsValidTarget()))
             {
-                if (Damage.LuxPassive(enemy) && enemy.IsInAutoAttackRange(enemy))
+                if (Damage.LuxPassive(enemy))
                 {
-                    Chat.Print("Focusuje " + enemy.ChampionName " z luxpassive");
+                    Program.DrawLog("Focus:" + enemy.ChampionName + " luxpassive", Color.NavajoWhite);
                     Orbwalker.ForcedTarget = enemy;
                 }
                 else

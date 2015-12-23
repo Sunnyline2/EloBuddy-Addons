@@ -1,5 +1,6 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using System.Drawing;
 
 namespace LightLux
 {
@@ -23,7 +24,7 @@ namespace LightLux
         public static float RDamage(Obj_AI_Base target)
         {
             var dmg = Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (new[] { 0, 300, 400, 500 }[SpellManager.R.Level] + (Program._Player.TotalMagicalDamage * 0.75f)));
-            Chat.Print("R: " + int.Parse(dmg.ToString()));
+            Program.DrawLog("R: " + int.Parse(dmg.ToString()), Color.Red);
             return dmg;
         }
 
@@ -40,6 +41,7 @@ namespace LightLux
         {
             if (target.HasBuff(""))
             {
+                return true;
             }
             return false;
         }
