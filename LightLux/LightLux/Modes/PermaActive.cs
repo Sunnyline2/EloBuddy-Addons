@@ -20,7 +20,11 @@ namespace LightLux.Modes
                 if (Damage.LuxPassive(enemy))
                 {
                     Program.DrawLog("Focus:" + enemy.ChampionName + " luxpassive", Color.NavajoWhite);
-                    Player.IssueOrder(GameObjectOrder.AttackUnit, enemy);
+                    Orbwalker.ForcedTarget = enemy;
+                }
+                else
+                {
+                    Orbwalker.ForcedTarget = null;
                 }
             }
 

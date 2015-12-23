@@ -23,7 +23,6 @@ namespace LightLux.Modes
                     if (qPrediction.HitChancePercent >= Program.hitchanceHarras && target != null)
                     {
                         Program.DrawLog("Harrasuje z Q w:" + target.ChampionName + " DMG:" + Damage.QDamage(target), Color.CadetBlue);
-                        Program.DrawLog(Damage.passivdamage(target).ToString(), Color.Red);
                         Q.Cast(qPrediction.CastPosition);
                     }
                 }
@@ -37,7 +36,6 @@ namespace LightLux.Modes
                     if (ePrediction.HitChancePercent >= Program.hitchanceHarras && target != null)
                     {
                         Program.DrawLog("Harrasuje z E w:" + target.ChampionName + " DMG:" + Damage.QDamage(target), Color.CadetBlue);
-                        Program.DrawLog(Damage.passivdamage(target).ToString(), Color.Red);
                         E.Cast(ePrediction.CastPosition);
                     }
                 }

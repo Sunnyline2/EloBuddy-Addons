@@ -17,22 +17,28 @@ namespace LightLux.Modes
             {
                 if (minion.IsValidTarget())
                 {
-                    Q.Cast(minion);
+                    if (Config.Modes.LaneClear.UseQ)
+                        Q.Cast(minion);
                     if (!(minion.IsValidTarget()))
                         return;
-                    E.Cast(minion);
+                    if (Config.Modes.LaneClear.UseE)
+                        E.Cast(minion);
                 }
             }
 
-            foreach (var monster in EntityManager.MinionsAndMonsters.GetJungleMonsters(Program._Player.Position, 1000f))
+            foreach (
+                var monster in EntityManager.MinionsAndMonsters.GetJungleMonsters(Program._Player.Position, 1000))
             {
                 if (monster.IsValidTarget())
                 {
-                    W.Cast();
-                    E.Cast(monster);
+                    if (Config.Modes.LaneClear.UseW)
+                        W.Cast();
+                    if (Config.Modes.LaneClear.UseE)
+                        E.Cast(monster);
                     if (!(monster.IsValidTarget()))
                         return;
-                    Q.Cast(monster);
+                    if (Config.Modes.LaneClear.UseE)
+                        Q.Cast(monster);
                 }
             }
         }

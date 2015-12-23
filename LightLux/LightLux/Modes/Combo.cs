@@ -54,7 +54,7 @@ namespace LightLux.Modes
                     if (R.IsReady() && R.IsLearned)
                     {
                         var target = TargetSelector.GetTarget(R.Range, DamageType.Magical, Player.Instance.Position);
-                        if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy && target.Health < Damage.RDamage(target))
+                        if (target.IsValidTarget() && !target.IsZombie && target.IsEnemy && target.Health <= Damage.RDamage(target))
                         {
                             var rPred = R.GetPrediction(target);
                             if (rPred.HitChancePercent >= Program.hitchanceCombo && !target.IsDead)

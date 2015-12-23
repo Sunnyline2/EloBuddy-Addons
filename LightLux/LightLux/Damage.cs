@@ -28,7 +28,7 @@ namespace LightLux
         {
             if (LuxPassive(target))
             {
-                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R) + passivdamage(target);
+                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R) + LuxPassiveDamage();
             }
             else
             {
@@ -36,10 +36,9 @@ namespace LightLux
             }
         }
 
-        public static float passivdamage(Obj_AI_Base target)
+        public static float LuxPassiveDamage()
         {
-            return DamageLibrary.GetSpellDamage(Program._Player, target, SpellSlot.Internal,
-                DamageLibrary.SpellStages.Detonation);
+            return 10 + (8 * Program._Player.Level) + (Player.Instance.TotalMagicalDamage / 100) * 25f;
         }
 
         public static float IgniteDamage(Obj_AI_Base target)
