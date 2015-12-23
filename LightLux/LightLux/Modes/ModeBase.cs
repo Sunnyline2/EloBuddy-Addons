@@ -23,6 +23,11 @@ namespace LightLux.Modes
             get { return SpellManager.E; }
         }
 
+        protected Spell.Skillshot E2
+        {
+            get { return SpellManager.E2; }
+        }
+
         protected Spell.Skillshot R
         {
             get { return SpellManager.R; }

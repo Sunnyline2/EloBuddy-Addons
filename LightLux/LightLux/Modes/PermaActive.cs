@@ -1,8 +1,9 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
-using System.Drawing;
+using SharpDX;
 using System.Linq;
+using Color = System.Drawing.Color;
 
 namespace LightLux.Modes
 {
@@ -25,20 +26,20 @@ namespace LightLux.Modes
                 if (Damage.LuxPassive(enemy))
                 {
                     Program.DrawLog("Focus:" + enemy.ChampionName + " luxpassive", Color.NavajoWhite);
-                    Orbwalker.ForcedTarget = enemy;
-                }
-                else
-                {
-                    Orbwalker.ForcedTarget = null;
+                    Player.IssueOrder(GameObjectOrder.AttackUnit, enemy);
+                    //    Orbwalker.ForcedTarget = enemy;
                 }
             }
+
             if (Damage.LuxE())
             {
-                var target = TargetSelector.GetTarget(E.Range, DamageType.Magical, Player.Instance.Position);
-                if (target.IsValidTarget() && target.IsEnemy && !target.IsDead)
+                foreach (var enemy in ObjectManager.Get<Obj_AI_Base>().Where(enemy => enemy.IsValidTarget() && enemy.IsEnemy && Vector3.Distance(Program.EObject.Position, enemy.Position) <= E.Width + 15))
                 {
-                    Program.DrawLog("Kastuje E dla " + target.ChampionName, Color.Blue);
-                    E.Cast(target);
+                    if (enemy.IsValid)
+                    {
+                        E2.Cast(enemy);
+                        return;
+                    }
                 }
             }
         }

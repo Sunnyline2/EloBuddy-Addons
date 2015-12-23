@@ -15,6 +15,7 @@ namespace LightLux
 
         public const float hitchanceCombo = 80f;
         public const float hitchanceHarras = 100f;
+        public static GameObject EObject;
 
         // Change this line to the champion you want to make the addon for,
         // watch out for the case being correct!
@@ -37,12 +38,32 @@ namespace LightLux
             SpellManager.Initialize();
             ModeManager.Initialize();
             Drawing.OnDraw += OnDraw;
+            GameObject.OnCreate += OnCreateObject;
+            GameObject.OnDelete += OnDeleteObject;
         }
 
         public static void DrawLog(string text, System.Drawing.Color kolor)
         {
             if (Config.Modes.Misc.Debug)
                 Chat.Print(text, kolor);
+        }
+
+        private static void OnCreateObject(GameObject obj, EventArgs args)
+        {
+            if (EObject == null && obj.Name.Contains("LuxLightstrike_tar_green"))
+            {
+                EObject = obj;
+            }
+            Program.DrawLog(obj.Name + " created!", System.Drawing.Color.YellowGreen);
+        }
+
+        private static void OnDeleteObject(GameObject obj, EventArgs args)
+        {
+            if (EObject != null && obj.Name.Contains("LuxLightstrike_tar_green"))
+            {
+                EObject = null;
+            }
+            Program.DrawLog(obj.Name + " removed!", System.Drawing.Color.YellowGreen);
         }
 
         private static void OnDraw(EventArgs args)
