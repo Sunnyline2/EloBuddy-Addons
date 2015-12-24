@@ -15,6 +15,7 @@ namespace LightLux.Modes
 
         public override void Execute()
         {
+            //Force aa && auto ignite
             foreach (var enemy in ObjectManager.Get<AIHeroClient>().Where(t => t.IsEnemy).Where(t => Program._Player.GetAutoAttackRange() >= t.Distance(Program._Player)).Where(t => t.IsValidTarget()))
             {
                 if (Damage.LuxPassive(enemy))
@@ -26,8 +27,12 @@ namespace LightLux.Modes
                 {
                     Orbwalker.ForcedTarget = null;
                 }
+                if (enemy.Health < Damage.IgniteDamage(enemy) && enemy.IsValidTarget())
+                {
+                }
             }
 
+            //E2 cast
             if (Program.EObject != null)
             {
                 foreach (var enemy in ObjectManager.Get<Obj_AI_Base>().Where(enemy => enemy.IsValidTarget() && enemy.IsEnemy && Vector3.Distance(Program.EObject.Position, enemy.Position) <= E.Width + 15))
@@ -36,7 +41,7 @@ namespace LightLux.Modes
                     E2.Cast();
                 }
             }
-
+            //W cast
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
                 if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent < 60 && ally.CountEnemiesInRange(700) > 0)
@@ -50,6 +55,7 @@ namespace LightLux.Modes
                     Program.DrawLog("Pomagam sobie tarczą!", Color.MediumVioletRed);
                 }
             }
+            //Ignite cast
         }
     }
 }
