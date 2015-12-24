@@ -38,6 +38,8 @@ namespace LightLux
 
         private static void OnTick(EventArgs args)
         {
+            if (Program._Player.IsDead)
+                return;
             // Execute all modes
             Modes.ForEach(mode =>
             {

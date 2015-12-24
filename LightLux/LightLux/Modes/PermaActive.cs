@@ -16,6 +16,7 @@ namespace LightLux.Modes
         public override void Execute()
         {
             //Force aa && auto ignite
+
             foreach (var enemy in ObjectManager.Get<AIHeroClient>().Where(t => t.IsEnemy).Where(t => Program._Player.GetAutoAttackRange() >= t.Distance(Program._Player)).Where(t => t.IsValidTarget()))
             {
                 if (Damage.LuxPassive(enemy))
@@ -30,17 +31,25 @@ namespace LightLux.Modes
             }
 
             //Steal baron or drake
-            if (Config.Modes.Misc.rSteal)
+            if (Config.Modes.Misc.rSteal && R.IsReady())
             {
                 foreach (
                     var monster in
-                        ObjectManager.Get<AIHeroClient>()
+                        ObjectManager.Get<Obj_AI_Minion>()
                             .Where(target => target.IsMonster)
                             .Where(target => R.IsInRange(target))
-                            .Where(target => target.IsValidTarget())
-                            .Where(target => target.Health < Damage.RDamage(target)))
+                            .Where(target => target.Health < Damage.RDamage(target) * 2))
                 {
-                    Chat.Print(monster);
+                    if (monster.Name.Contains("Baron") && R.IsInRange(monster))
+                    {
+                        R.Cast(monster);
+                        Program.DrawLog("Trying steal baron!!", Color.White);
+                    }
+                    else if (monster.Name.Contains("Dragon") && R.IsInRange(monster))
+                    {
+                        R.Cast(monster);
+                        Program.DrawLog("Trying steal drake!!", Color.White);
+                    }
                 }
             }
 
@@ -57,15 +66,10 @@ namespace LightLux.Modes
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
                 // if (ally.IsStunned || !ally.IsCharmed || !ally.IsFeared || ally.HealthPercent < 60 && ally.CountEnemiesInRange(700) > 0) bugged!!
-                if (ally.IsMe && ally.HealthPercent < 80 && ally.CountEnemiesInRange(600) > 0)
+                if (ally.HealthPercent < 80 && ally.CountEnemiesInRange(600) > 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam tarcza w " + ally.Name, Color.MediumVioletRed);
-                }
-                else if (ally.CountEnemiesInRange(600) > 0 && ally.HealthPercent < 50)
-                {
-                    W.Cast(ally);
-                    Program.DrawLog("Pomagam sobie tarczą!", Color.MediumVioletRed);
                 }
             }
         }
