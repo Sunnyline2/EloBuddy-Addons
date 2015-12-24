@@ -40,7 +40,7 @@ namespace LightLux
                 Menu.AddSeparator();
                 Misc.Initialize();
                 Menu.AddSeparator();
-                LaneClear.Initialize();
+                Draw.Initialize();
                 Menu.AddSeparator();
             }
 
@@ -82,47 +82,6 @@ namespace LightLux
                     _useW = Menu.Add("comboUseW", new CheckBox("Use W", true));
                     _useE = Menu.Add("comboUseE", new CheckBox("Use E", true));
                     _useR = Menu.Add("comboUseR", new CheckBox("Use R", true));
-                }
-
-                public static void Initialize()
-                {
-                }
-            }
-
-            public static class LaneClear
-            {
-                private static readonly CheckBox _useQ;
-                private static readonly CheckBox _useE;
-                private static readonly CheckBox _useR;
-                private static readonly CheckBox _useW;
-
-                public static bool UseQ
-                {
-                    get { return _useQ.CurrentValue; }
-                }
-
-                public static bool UseW
-                {
-                    get { return _useW.CurrentValue; }
-                }
-
-                public static bool UseE
-                {
-                    get { return _useE.CurrentValue; }
-                }
-
-                public static bool UseR
-                {
-                    get { return _useR.CurrentValue; }
-                }
-
-                static LaneClear()
-                {
-                    Menu.AddGroupLabel("LaneClear");
-                    _useQ = Menu.Add("laneQ", new CheckBox("Use Q", true));
-                    _useW = Menu.Add("laneQ", new CheckBox("Use Q", true));
-                    _useE = Menu.Add("laneE", new CheckBox("Use E", true));
-                    _useR = Menu.Add("ksMonsterR", new CheckBox("Try steal baron/drake with R", true));
                 }
 
                 public static void Initialize()
@@ -197,10 +156,28 @@ namespace LightLux
                     get { return Menu["Debug"].Cast<CheckBox>().CurrentValue; }
                 }
 
+                public static bool rSteal
+                {
+                    get { return Menu["rSteal"].Cast<CheckBox>().CurrentValue; }
+                }
+
+                public static bool useQ
+                {
+                    get { return Menu["useQ"].Cast<CheckBox>().CurrentValue; }
+                }
+
+                public static bool useE
+                {
+                    get { return Menu["useE"].Cast<CheckBox>().CurrentValue; }
+                }
+
                 static Misc()
                 {
                     Menu.AddGroupLabel("Misc");
                     Menu.Add("Debug", new CheckBox("Show debug log", true));
+                    Menu.Add("rSteal", new CheckBox("Try steal drake or baron with R", true));
+                    Menu.Add("useQ", new CheckBox("Use Q to LaneClear", true));
+                    Menu.Add("useE", new CheckBox("Use E to LaneClear", true));
                 }
 
                 public static void Initialize()

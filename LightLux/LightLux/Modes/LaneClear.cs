@@ -17,11 +17,11 @@ namespace LightLux.Modes
             {
                 if (minion.IsValidTarget())
                 {
-                    if (Config.Modes.LaneClear.UseQ)
+                    if (Config.Modes.Misc.useQ)
                         Q.Cast(minion);
                     if (!(minion.IsValidTarget()))
                         return;
-                    if (Config.Modes.LaneClear.UseE)
+                    if (Config.Modes.Misc.useE)
                         E.Cast(minion);
                 }
             }
@@ -31,13 +31,12 @@ namespace LightLux.Modes
             {
                 if (monster.IsValidTarget())
                 {
-                    if (Config.Modes.LaneClear.UseW)
-                        W.Cast();
-                    if (Config.Modes.LaneClear.UseE)
+                    W.Cast(monster);
+                    if (Config.Modes.Misc.useE)
                         E.Cast(monster);
                     if (!(monster.IsValidTarget()))
                         return;
-                    if (Config.Modes.LaneClear.UseE)
+                    if (Config.Modes.Misc.useQ)
                         Q.Cast(monster);
                 }
             }

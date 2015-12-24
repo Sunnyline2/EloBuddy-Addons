@@ -7,8 +7,8 @@ namespace LightLux
     {
         public static float QDamage(Obj_AI_Base target)
         {
-            if (SpellManager.Q.IsReady())
-                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.Q);
+            if (SpellManager.Q.IsReady() && SpellManager.Q.IsLearned)
+                return Program._Player.GetSpellDamage(target, SpellSlot.Q);
             return 0f;
         }
 
@@ -19,21 +19,25 @@ namespace LightLux
 
         public static float EDamage(Obj_AI_Base target)
         {
-            if (SpellManager.E.IsReady())
-                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.E);
+            if (SpellManager.E.IsReady() && SpellManager.E.IsLearned)
+                return Program._Player.GetSpellDamage(target, SpellSlot.E);
             return 0f;
         }
 
         public static float RDamage(Obj_AI_Base target)
         {
-            if (LuxPassive(target))
+            if (SpellManager.R.IsLearned && SpellManager.R.IsReady())
             {
-                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R) + LuxPassiveDamage();
+                if (LuxPassive(target))
+                {
+                    return Program._Player.GetSpellDamage(target, SpellSlot.R) + LuxPassiveDamage();
+                }
+                else
+                {
+                    return Program._Player.GetSpellDamage(target, SpellSlot.R);
+                }
             }
-            else
-            {
-                return DamageLibrary.GetSpellDamage(Player.Instance, target, SpellSlot.R);
-            }
+            return 0f;
         }
 
         public static float LuxPassiveDamage()
@@ -53,6 +57,15 @@ namespace LightLux
                 return true;
             }
             return false;
+        }
+
+        public static double MaxDMG(Obj_AI_Base target)
+        {
+            double dmg = 0;
+            if (Config.Modes.Combo.UseQ) dmg += QDamage(target);
+            if (Config.Modes.Combo.UseE) dmg += EDamage(target);
+            if (Config.Modes.Combo.UseR) dmg += RDamage(target);
+            return dmg;
         }
 
         public static bool LuxE()

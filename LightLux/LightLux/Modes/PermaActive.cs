@@ -27,8 +27,20 @@ namespace LightLux.Modes
                 {
                     Orbwalker.ForcedTarget = null;
                 }
-                if (enemy.Health < Damage.IgniteDamage(enemy) && enemy.IsValidTarget())
+            }
+
+            //Steal baron or drake
+            if (Config.Modes.Misc.rSteal)
+            {
+                foreach (
+                    var monster in
+                        ObjectManager.Get<AIHeroClient>()
+                            .Where(target => target.IsMonster)
+                            .Where(target => R.IsInRange(target))
+                            .Where(target => target.IsValidTarget())
+                            .Where(target => target.Health < Damage.RDamage(target)))
                 {
+                    Chat.Print(monster);
                 }
             }
 
@@ -44,18 +56,18 @@ namespace LightLux.Modes
             //W cast
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
-                if (ally.IsStunned || ally.IsCharmed || ally.IsFeared || ally.HealthPercent < 60 && ally.CountEnemiesInRange(700) > 0)
+                // if (ally.IsStunned || !ally.IsCharmed || !ally.IsFeared || ally.HealthPercent < 60 && ally.CountEnemiesInRange(700) > 0) bugged!!
+                if (ally.IsMe && ally.HealthPercent < 80 && ally.CountEnemiesInRange(600) > 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam tarcza w " + ally.Name, Color.MediumVioletRed);
                 }
-                else if (ally.IsMe && ally.CountEnemiesInRange(700) > 0)
+                else if (ally.CountEnemiesInRange(600) > 0 && ally.HealthPercent < 50)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam sobie tarczą!", Color.MediumVioletRed);
                 }
             }
-            //Ignite cast
         }
     }
 }
