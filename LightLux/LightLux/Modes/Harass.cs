@@ -13,7 +13,6 @@ namespace LightLux.Modes
 
         public override void Execute()
         {
-            // TODO: Add harass logic here
             if (Config.Modes.Harass.UseE && Q.IsReady())
             {
                 var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);

@@ -22,8 +22,8 @@ namespace LightLux
                 new LaneClear(),
             });
 
-            // Listen to events we need
-            Game.OnTick += OnTick;
+            //Listen to events we need
+            //Game.OnTick += OnTick;
             Game.OnUpdate += OnTick;
         }
 
