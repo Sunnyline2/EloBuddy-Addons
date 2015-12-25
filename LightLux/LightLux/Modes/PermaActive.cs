@@ -66,7 +66,7 @@ namespace LightLux.Modes
             foreach (var ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsValidTarget() && ally.IsAlly && !ally.IsMinion && !ally.IsMonster && Vector3.Distance(Player.Instance.Position, ally.Position) <= W.Width))
             {
                 // if (ally.IsStunned || !ally.IsCharmed || !ally.IsFeared || ally.HealthPercent < 60 && ally.CountEnemiesInRange(700) > 0) bugged!!
-                if (ally.HealthPercent < 80 && ally.CountEnemiesInRange(600) > 0)
+                if (ally.CountEnemiesInRange(600) > 0)
                 {
                     W.Cast(ally);
                     Program.DrawLog("Pomagam tarcza w " + ally.Name, Color.MediumVioletRed);

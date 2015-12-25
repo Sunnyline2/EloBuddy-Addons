@@ -17,7 +17,7 @@ namespace LightLux
         {
             Q = new Spell.Skillshot(SpellSlot.Q, 1175, SkillShotType.Linear, 250, 1200, 180); //80);
             W = new Spell.Skillshot(SpellSlot.W, 1075, SkillShotType.Linear, 250, 1200, 150);
-            E = new Spell.Skillshot(SpellSlot.E, 1100, SkillShotType.Circular, 150, 1300, 275);
+            E = new Spell.Skillshot(SpellSlot.E, 1100, SkillShotType.Circular, 150, 1300, 350); //275
             E2 = new Spell.Active(SpellSlot.E, 350);
             R = new Spell.Skillshot(SpellSlot.R, 3340, SkillShotType.Linear, 1135, Int32.MaxValue, 190);
         }

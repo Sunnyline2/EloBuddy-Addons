@@ -13,11 +13,7 @@ namespace LightLux
 
         static ModeManager()
         {
-            // Initialize properties
             Modes = new List<ModeBase>();
-
-            // Load all modes manually since we are in a sandbox which does not allow reflection
-            // Order matter here! You would want something like PermaActive being called first
             Modes.AddRange(new ModeBase[]
             {
                 new PermaActive(),

@@ -52,6 +52,7 @@ namespace LightLux
         {
             if (obj != null && obj.Name.Contains("Lux_Base_E_mis.troy"))
             {
+                //TODO: FIX
                 if (obj.IsMe)
                 {
                     EObject = obj;
@@ -62,6 +63,7 @@ namespace LightLux
 
         private static void OnDeleteObject(GameObject obj, EventArgs args)
         {
+            //TODO: FIX
             if (obj != null && obj.Name.Contains("Lux_Base_E_mis.troy"))
             {
                 if (obj.IsMe)
