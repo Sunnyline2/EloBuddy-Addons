@@ -45,6 +45,9 @@ namespace LightCassiopeia
             Game.OnTick += OnTick;
             Game.OnUpdate += OnTick;
             Drawing.OnEndScene += OnEndScene;
+            GameObject.OnCreate += GameObject_OnCreate;
+            Gapcloser.OnGapcloser += OnGapCloser;
+            Interrupter.OnInterruptableSpell += OnPossibleToInterrupt;
             Modes = new List<ModeBase>();
             Modes.AddRange(new ModeBase[]
             {
@@ -52,8 +55,41 @@ namespace LightCassiopeia
                 new Combo(),
                 new Harras(),
                 new LaneClear(),
+                new LastHit(),
                 new JungleClear()
             });
+        }
+
+        public static void GameObject_OnCreate(GameObject sender, EventArgs args)
+        {
+            var rengar = EntityManager.Heroes.Enemies.FirstOrDefault(a => a.Hero == Champion.Rengar);
+            if (sender.Name == "Rengar_LeapSound.troy" && ObjectManager.Player.Distance(Player.Instance.Position) <= SpellManager.R.Range && rengar != null)
+            {
+                SpellManager.R.Cast(rengar);
+            }
+        }
+
+        public static void OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs e)
+        {
+            if (sender == null || sender.IsAlly)
+                return;
+
+            if ((sender.IsAttackingPlayer || e.End.Distance(Player.Instance.Position) <= 70))
+            {
+                SpellManager.R.Cast(sender);
+            }
+        }
+
+        public static void OnPossibleToInterrupt(Obj_AI_Base sender,
+            Interrupter.InterruptableSpellEventArgs interruptableSpellEventArgs)
+        {
+            if (sender == null || sender.IsAlly)
+                return;
+
+            if ((sender.IsAttackingPlayer || sender.Distance(Player.Instance.Position) <= 70))
+            {
+                SpellManager.R.Cast(sender);
+            }
         }
 
         private static void OnEndScene(EventArgs args)

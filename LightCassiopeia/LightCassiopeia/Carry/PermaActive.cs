@@ -13,6 +13,12 @@ namespace LightCassiopeia.Carry
 
         public override void Execute()
         {
+            //KS with E
+            if (MenuList.Misc.KsE)
+                foreach (var enemy in EntityManager.Heroes.Enemies.Where(en => en.Health < Damage.GetEDamage(en) - 20))
+                {
+                    E.Cast(enemy);
+                }
         }
     }
 }

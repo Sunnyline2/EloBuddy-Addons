@@ -14,7 +14,26 @@ namespace LightCassiopeia.Carry
 
         public override void Execute()
         {
-            //Focus poisoned target
+            //Focus poisoned targe
+            //--------------------------------ULTIMATE-------------------------------------------
+            if (MenuList.Combo.WithR && R.IsReady())
+            {
+                var target = TargetSelector.GetTarget(R.Range, DamageType.Magical);
+                var rPred = R.GetPrediction(target);
+                {
+                    {
+                        foreach (var enemy in ObjectManager.Get<AIHeroClient>().Where(enemy => enemy.Distance(Player.Instance.Position) <= R.Range))
+                        {
+                            if (enemy.CountEnemiesInRange(R.Range) >= MenuList.Combo.CountEnemiesInR && rPred.HitChancePercent >= MenuList.Misc.PredQ)
+                            {
+                                R.Cast(rPred.CastPosition);
+                            }
+                        }
+                    }
+                }
+            }
+            //-----------------------------------------------------------------------------------
+            //--------------------------------Q--------------------------------------------------
             if (MenuList.Combo.WithQ && Q.IsReady())
                 foreach (var enemy in EntityManager.Heroes.Enemies.Where(en => en.IsValidTarget(Q.Range)))
                 {
@@ -22,12 +41,16 @@ namespace LightCassiopeia.Carry
                     if (qPred.HitChancePercent >= Misc.PredQ)
                         Q.Cast(qPred.CastPosition);
                 }
+            //-----------------------------------------------------------------------------------
+            //--------------------------------E--------------------------------------------------
             if (MenuList.Combo.WithE && E.IsReady())
                 foreach (var enemy in EntityManager.Heroes.Enemies.Where(en => en.IsValidTarget(E.Range)))
                 {
                     if (enemy.HasBuffOfType(BuffType.Poison))
                         E.Cast(enemy);
                 }
+            //-----------------------------------------------------------------------------------
+            //--------------------------------W--------------------------------------------------
             if (MenuList.Combo.WithW && W.IsReady())
                 foreach (var enemy in EntityManager.Heroes.Enemies.Where(en => en.IsValidTarget(W.Range)))
                 {
@@ -37,6 +60,7 @@ namespace LightCassiopeia.Carry
                     if (wPred.HitChancePercent >= MenuList.Misc.PredQ)
                         SpellManager.W.Cast(wPred.CastPosition);
                 }
+            //-----------------------------------------------------------------------------------
         }
     }
 }

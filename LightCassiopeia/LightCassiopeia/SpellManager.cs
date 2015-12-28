@@ -14,8 +14,8 @@ namespace LightCassiopeia
 
         static SpellManager()
         {
-            Q = new Spell.Skillshot(SpellSlot.Q, 850, SkillShotType.Circular, 750, null, 150);
-            W = new Spell.Skillshot(SpellSlot.W, 850, SkillShotType.Circular, 250, null, 150);
+            Q = new Spell.Skillshot(SpellSlot.Q, 850, SkillShotType.Circular, 750, 500, 150);
+            W = new Spell.Skillshot(SpellSlot.W, 850, SkillShotType.Circular, 250, 500, 150);
             E = new Spell.Targeted(SpellSlot.E, 700);
             R = new Spell.Skillshot(SpellSlot.R, 825, SkillShotType.Cone, 250, null, (int)(80 * Math.PI / 180));
         }

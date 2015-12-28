@@ -1,6 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using System;
+using System.Linq;
 
 namespace LightCassiopeia
 {
@@ -72,15 +73,6 @@ namespace LightCassiopeia
         {
             //TODO
             return 0;
-        }
-
-        public static bool Poisoned()
-        {
-            if (Player.HasBuff("AuraofDespair"))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

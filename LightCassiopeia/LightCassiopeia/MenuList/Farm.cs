@@ -27,7 +27,7 @@ namespace LightCassiopeia.MenuList
 
         static Farm()
         {
-            Menu = DrawingMenu.Menu.AddSubMenu("Farming");
+            Menu = DrawingMenu.Menu.AddSubMenu("Laneclear and Jungleclear");
             _withQ = Menu.Add("useQ", new CheckBox("Q"));
             _withW = Menu.Add("useW", new CheckBox("W"));
             _withE = Menu.Add("useE", new CheckBox("E"));

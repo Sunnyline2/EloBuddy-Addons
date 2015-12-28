@@ -14,7 +14,7 @@ namespace LightCassiopeia.Carry
 
         public override void Execute()
         {
-            if (MenuList.Harras.WithQ)
+            if (MenuList.Harras.WithQ && Q.IsReady())
             {
                 var target = TargetSelector.GetTarget(Q.Range, DamageType.Magical, Player.Instance.Position);
                 var qPred = Q.GetPrediction(target);
@@ -22,14 +22,14 @@ namespace LightCassiopeia.Carry
                     Q.Cast(qPred.CastPosition);
             }
 
-            if (MenuList.Harras.WithW)
+            if (MenuList.Harras.WithW && W.IsReady())
             {
                 var target = TargetSelector.GetTarget(W.Range, DamageType.Magical, Player.Instance.Position);
                 var wPred = SpellManager.W.GetPrediction(target);
                 if (wPred.HitChancePercent >= Misc.PredQ)
                     W.Cast(wPred.CastPosition);
             }
-            if (MenuList.Harras.WithE)
+            if (MenuList.Harras.WithE && E.IsReady())
             {
                 foreach (var enemy in EntityManager.Heroes.Enemies.Where(en => en.IsValidTarget(E.Range)))
                 {

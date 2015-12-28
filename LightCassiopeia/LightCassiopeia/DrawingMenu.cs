@@ -25,10 +25,10 @@ namespace LightCassiopeia
             {
                 //Menu drawing!
                 Combo.Initialize();
-                Drawing.Initialize();
-                Farm.Initialize();
-                Misc.Initialize();
                 Harras.Initialize();
+                Farm.Initialize();
+                Drawing.Initialize();
+                Misc.Initialize();
             }
 
             public static void Initialize()
